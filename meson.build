@@ -1,9 +1,6 @@
 project('nitrogfx', 'c')
 
-native = get_option('native')
-install = native and meson.is_cross_build() ? false : true
-
-libpng_dep = dependency('libpng', native: native)
+libpng_dep = dependency('libpng')
 
 nitrogfx_exe = executable('nitrogfx',
     sources: [
@@ -19,9 +16,7 @@ nitrogfx_exe = executable('nitrogfx',
         'json.c',
         'cJSON.c',
     ],
-    dependencies: libpng_dep,
-    native: native,
-    install: install
+    dependencies: libpng_dep
 )
 
 meson.override_find_program('nitrogfx', nitrogfx_exe)
